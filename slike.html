@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0a1424">
+  <title>Galerija · Lovro Horvat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0a1424;--surface:#101f38;--surface-2:#132743;
+      --azure:#1877d2;--azure-soft:#3a95ee;--gold:#c9a24c;--gold-soft:#e6cd8a;
+      --text:#eaf0f8;--muted:#9fb0c6;--line:rgba(120,160,210,.14);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Inter',system-ui,sans-serif;color:var(--text);
+      min-height:100vh;min-height:100dvh;background:var(--navy);
+      padding:max(20px,env(safe-area-inset-top)) 14px 48px;overflow-x:hidden;position:relative;
+    }
+    body::before{
+      content:'';position:fixed;inset:-20% -10% auto -10%;height:60vh;z-index:0;pointer-events:none;
+      background:radial-gradient(60% 100% at 30% 0%,rgba(24,119,210,.4),transparent 70%),
+                 radial-gradient(50% 80% at 90% 10%,rgba(201,162,76,.16),transparent 70%);
+      filter:blur(30px);
+    }
+    .wrap{position:relative;z-index:1;max-width:520px;margin:0 auto}
+    .back{
+      display:inline-flex;align-items:center;gap:7px;color:var(--muted);
+      text-decoration:none;font-size:.88rem;font-weight:500;margin-bottom:22px;padding:8px 0;
+      transition:color .2s ease,gap .2s ease;
+    }
+    .back:hover{color:var(--gold-soft);gap:11px}
+    .back svg{width:18px;height:18px}
+    .eyebrow{
+      font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--gold);margin-bottom:8px;
+    }
+    h1{font-family:'Fraunces',serif;font-weight:600;font-size:1.9rem;letter-spacing:-.01em;line-height:1.1}
+    .sub{font-size:.86rem;color:var(--muted);margin:4px 0 26px}
+    .sub b{color:var(--gold-soft);font-weight:500}
+
+    .gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .cell{
+      position:relative;aspect-ratio:1;border-radius:16px;overflow:hidden;
+      background:var(--surface);border:1px solid var(--line);cursor:pointer;
+      opacity:0;transform:translateY(12px) scale(.98);
+      animation:reveal .55s cubic-bezier(.22,1,.36,1) forwards;
+      transition:border-color .25s ease,box-shadow .25s ease;
+    }
+    .cell:nth-child(1){animation-delay:.05s}.cell:nth-child(2){animation-delay:.11s}
+    .cell:nth-child(3){animation-delay:.17s}.cell:nth-child(4){animation-delay:.23s}
+    .cell:nth-child(5){animation-delay:.29s}.cell:nth-child(6){animation-delay:.35s}
+    @keyframes reveal{to{opacity:1;transform:none}}
+    .cell:hover{border-color:rgba(201,162,76,.45);box-shadow:0 16px 30px -16px rgba(0,0,0,.7)}
+    .cell img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+    .cell:hover img{transform:scale(1.07)}
+    .cell::after{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 55%,rgba(10,20,36,.5));
+      opacity:0;transition:opacity .25s ease;
+    }
+    .cell:hover::after{opacity:1}
+    .cell.empty{
+      display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+      color:var(--muted);cursor:default;
+    }
+    .cell.empty:hover{border-color:var(--line);box-shadow:none}
+    .cell.empty svg{width:26px;height:26px;opacity:.4}
+    .cell.empty span{font-size:.74rem;letter-spacing:.04em}
+
+    .note{
+      margin-top:24px;padding:14px 16px;border-radius:14px;
+      background:rgba(24,119,210,.08);border:1px solid var(--line);
+      font-size:.76rem;color:var(--muted);line-height:1.6;text-align:center;
+    }
+    .note code{
+      display:inline-block;margin-top:6px;font-size:.72rem;color:var(--gold-soft);
+      background:rgba(0,0,0,.3);padding:3px 8px;border-radius:6px;
+    }
+
+    /* lightbox */
+    .lb{
+      position:fixed;inset:0;z-index:30;display:none;place-items:center;
+      background:rgba(6,12,22,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+      padding:20px;opacity:0;transition:opacity .25s ease;
+    }
+    .lb.on{display:grid;opacity:1}
+    .lb img{
+      max-width:100%;max-height:82vh;border-radius:16px;
+      box-shadow:0 30px 60px -20px rgba(0,0,0,.8);
+      border:1px solid rgba(201,162,76,.35);
+      animation:pop .3s cubic-bezier(.22,1,.36,1);
+    }
+    @keyframes pop{from{transform:scale(.94);opacity:0}to{transform:none;opacity:1}}
+    .lb .x{
+      position:absolute;top:18px;right:18px;width:42px;height:42px;border-radius:50%;
+      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;
+      display:flex;align-items:center;justify-content:center;cursor:pointer;
+    }
+    .lb .x svg{width:20px;height:20px}
+    @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.cell{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="lovro-horvat-vizitka.html" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      Natrag na vizitku
+    </a>
+
+    <p class="eyebrow">Galerija</p>
+    <h1>Fotografije</h1>
+    <p class="sub">Lovro Horvat · <b>mag. polit.</b></p>
+
+    <div class="gallery" id="gallery">
+      <div class="cell"><img src="lovro-horvat.jpg" alt="Lovro Horvat"></div>
+      <div class="cell empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Slika 2</span></div>
+      <div class="cell empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Slika 3</span></div>
+      <div class="cell empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Slika 4</span></div>
+      <div class="cell empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Slika 5</span></div>
+      <div class="cell empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><span>Slika 6</span></div>
+    </div>
+
+    <p class="note">
+      Dodaj fotografije – zamijeni prazno polje sa slikom:
+      <br><code>&lt;div class="cell"&gt;&lt;img src="slika.jpg" alt="..."&gt;&lt;/div&gt;</code>
+    </p>
+  </div>
+
+  <div class="lb" id="lb">
+    <button class="x" id="lbClose" aria-label="Zatvori"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+    <img id="lbImg" src="" alt="">
+  </div>
+
+  <script>
+    const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg');
+    document.getElementById('gallery').addEventListener('click',e=>{
+      const img=e.target.closest('.cell:not(.empty) img');
+      if(!img)return;
+      lbImg.src=img.src;lbImg.alt=img.alt;lb.classList.add('on');
+    });
+    function close(){lb.classList.remove('on')}
+    document.getElementById('lbClose').addEventListener('click',close);
+    lb.addEventListener('click',e=>{if(e.target===lb)close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+  </script>
+</body>
+</html>
