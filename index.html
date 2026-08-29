@@ -248,7 +248,7 @@
     }
     function shareCard(){
       const data={title:'Lovro Horvat – Digitalna vizitka',
-        text:'Lovro Horvat, mag. polit. · Potpredsjednik Gradskog vijeća Grada Čakovca',
+        text:'Lovro Horvat, mag. pol. · Potpredsjednik Gradskog vijeća Grada Čakovca',
         url:location.href};
       if(navigator.share){navigator.share(data).catch(()=>{});}
       else{navigator.clipboard.writeText(location.href).then(()=>toast('Link kopiran u međuspremnik'));}
