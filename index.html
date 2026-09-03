@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#070f1f">
-  <meta name="description" content="Digitalna vizitka – Lovro Horvat, mag. pol.">
+  <meta name="description" content="Digitalna vizitka – Lovro Horvat, mag. polit.">
   <title>Lovro Horvat · Digitalna vizitka</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,65 +25,69 @@
       --font-b:'Inter',system-ui,sans-serif;
     }
     *{margin:0;padding:0;box-sizing:border-box}
-    html{-webkit-text-size-adjust:100%}
+    html, body{
+      height:100%;
+      height:100dvh;
+      overflow:hidden;
+    }
     body{
       font-family:var(--font-b);color:var(--text);
-      min-height:100vh;min-height:100dvh;
       background:
         radial-gradient(70% 50% at 50% 0%,rgba(30,127,224,.18),transparent 70%),
         var(--bg);
-      display:flex;justify-content:center;align-items:flex-start;
-      padding:max(20px,env(safe-area-inset-top)) 14px 48px;
-      line-height:1.5;overflow-x:hidden;
+      display:flex;justify-content:center;align-items:center;
+      padding:10px;
+      line-height:1.35;
     }
 
     .card{
-      position:relative;z-index:1;width:100%;max-width:410px;
-      border:1px solid var(--stroke);border-radius:26px;overflow:hidden;
+      position:relative;z-index:1;width:100%;max-width:390px;
+      max-height:calc(100dvh - 20px);
+      display:flex;flex-direction:column;justify-content:space-between;
+      border:1px solid var(--stroke);border-radius:22px;overflow:hidden;
       background:
         linear-gradient(180deg,rgba(6,14,30,.14) 0%,rgba(6,14,30,.2) 42%,rgba(6,14,30,.42) 100%),
         url('pozadina.jpg') left top / cover no-repeat;
-      box-shadow:0 30px 60px -22px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.04) inset;
+      box-shadow:0 20px 40px -15px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.04) inset;
       animation:rise .7s cubic-bezier(.22,1,.36,1) both;
     }
-    @keyframes rise{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:none}}
+    @keyframes rise{from{opacity:0;transform:translateY(15px) scale(.985)}to{opacity:1;transform:none}}
     .card::before{
       content:'';position:absolute;top:0;left:0;right:0;height:2px;z-index:4;
       background:linear-gradient(90deg,transparent,var(--cyan),var(--blue-bright),var(--cyan),transparent);
       box-shadow:0 0 14px rgba(58,160,255,.7);
     }
 
-    .header{position:relative;padding:32px 22px 26px;text-align:center}
+    .header{position:relative;padding:16px 16px 8px;text-align:center}
 
-    .crest{position:relative;width:132px;height:132px;margin:0 auto 16px}
+    .crest{position:relative;width:92px;height:92px;margin:0 auto 8px}
     .crest .ring{
       position:absolute;inset:0;border-radius:50%;
       background:conic-gradient(from 210deg,var(--blue-bright),var(--cyan),#ffffff,var(--cyan),var(--blue-bright));
-      padding:3px;
-      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));
-      mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));
+      padding:2.5px;
+      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 2.5px));
+      mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#000 calc(100% - 2.5px));
       animation:spin 12s linear infinite;
     }
     @keyframes spin{to{transform:rotate(360deg)}}
-    .crest .halo{position:absolute;inset:-8px;border-radius:50%;box-shadow:0 0 36px -4px rgba(58,160,255,.6)}
+    .crest .halo{position:absolute;inset:-6px;border-radius:50%;box-shadow:0 0 24px -4px rgba(58,160,255,.6)}
     .crest img{
-      position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);
+      position:absolute;inset:6px;width:calc(100% - 12px);height:calc(100% - 12px);
       border-radius:50%;object-fit:cover;display:block;
-      border:2px solid rgba(7,15,31,.95);box-shadow:0 8px 22px rgba(0,0,0,.5);
+      border:2px solid rgba(7,15,31,.95);box-shadow:0 6px 16px rgba(0,0,0,.5);
     }
 
-    .name{font-family:var(--font-d);font-weight:700;font-size:1.9rem;letter-spacing:.01em;line-height:1.05;text-shadow:0 2px 18px rgba(0,0,0,.5)}
-    .cred{font-family:var(--font-d);font-weight:500;font-size:.95rem;color:var(--cyan);letter-spacing:.06em;margin-top:2px}
-    .divider{width:46px;height:2px;margin:13px auto 11px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--blue-bright),transparent);box-shadow:0 0 10px rgba(58,160,255,.6)}
-    .role{font-family:var(--font-d);font-size:.8rem;font-weight:500;color:#dbe7f5;text-transform:uppercase;letter-spacing:.13em;text-shadow:0 1px 10px rgba(0,4,16,.7)}
+    .name{font-family:var(--font-d);font-weight:700;font-size:1.55rem;letter-spacing:.01em;line-height:1.05;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+    .cred{font-family:var(--font-d);font-weight:500;font-size:.85rem;color:var(--cyan);letter-spacing:.06em;margin-top:1px}
+    .divider{width:40px;height:2px;margin:7px auto 6px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--blue-bright),transparent);box-shadow:0 0 10px rgba(58,160,255,.6)}
+    .role{font-family:var(--font-d);font-size:.72rem;font-weight:500;color:#dbe7f5;text-transform:uppercase;letter-spacing:.11em;text-shadow:0 1px 10px rgba(0,4,16,.7)}
     .role .nowrap{white-space:nowrap}
 
-    .body{padding:6px 18px 22px}
-    .stagger{opacity:0;transform:translateY(10px);animation:up .55s cubic-bezier(.22,1,.36,1) forwards}
+    .body{padding:0 14px 10px;display:flex;flex-direction:column;gap:8px}
+    .stagger{opacity:0;transform:translateY(8px);animation:up .55s cubic-bezier(.22,1,.36,1) forwards}
     .d1{animation-delay:.12s}.d2{animation-delay:.19s}.d3{animation-delay:.26s}.d4{animation-delay:.33s}
     @keyframes up{to{opacity:1;transform:none}}
 
-    /* shared glass + diagonal light streak */
     .glass{
       position:relative;overflow:hidden;
       background:var(--glass);
@@ -91,50 +95,49 @@
       -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
       transition:transform .22s ease,background .22s ease,border-color .22s ease,box-shadow .22s ease;
     }
-    .glass::after{  /* static thin diagonal streak, like the light lines */
+    .glass::after{
       content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
       background:linear-gradient(122deg,transparent 44%,rgba(120,190,255,.28) 48%,rgba(255,255,255,.7) 50%,rgba(120,190,255,.28) 52%,transparent 56%);
       opacity:.22;transition:opacity .3s ease,transform .5s ease;transform:translateX(-6%)
     }
     .glass:hover,.glass:active{
-      transform:translateY(-3px);background:var(--glass-hi);border-color:var(--stroke-hi);
-      box-shadow:0 14px 28px -14px rgba(58,160,255,.65);
+      transform:translateY(-2px);background:var(--glass-hi);border-color:var(--stroke-hi);
+      box-shadow:0 10px 20px -10px rgba(58,160,255,.65);
     }
     .glass:hover::after,.glass:active::after{opacity:.5;transform:translateX(6%)}
 
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:12px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
     .tile{
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;
-      padding:17px 10px;min-height:104px;border-radius:16px;text-decoration:none;color:var(--text);
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      padding:9px 8px;min-height:auto;border-radius:12px;text-decoration:none;color:var(--text);
     }
-    .tile .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}
-    .tile .ic svg{width:23px;height:23px}
+    .tile .ic{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;flex-shrink:0}
+    .tile .ic svg{width:18px;height:18px}
     .tile.call .ic{background:rgba(46,196,132,.18);color:#63e6ab}
     .tile.mail .ic{background:rgba(30,127,224,.24);color:#6cb6ff}
     .tile.li   .ic{background:rgba(35,120,190,.26);color:#6fb0ea}
     .tile.fb   .ic{background:rgba(66,103,178,.26);color:#93b6ee}
-    .tile span{font-family:var(--font-d);font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;position:relative;z-index:1;text-shadow:0 1px 8px rgba(0,4,16,.65)}
+    .tile span{font-family:var(--font-d);font-size:.72rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;position:relative;z-index:1;text-shadow:0 1px 8px rgba(0,4,16,.65)}
 
-    .actions{display:flex;gap:10px;margin-bottom:12px}
+    .actions{display:flex;gap:8px}
     .btn{
-      flex:1;padding:14px 10px;border-radius:14px;cursor:pointer;
-      font-family:var(--font-d);font-size:.92rem;font-weight:600;letter-spacing:.03em;color:#fff;
-      display:flex;align-items:center;justify-content:center;gap:8px;
+      flex:1;padding:9px 8px;border-radius:12px;cursor:pointer;
+      font-family:var(--font-d);font-size:.82rem;font-weight:600;letter-spacing:.02em;color:#fff;
+      display:flex;align-items:center;justify-content:center;gap:6px;
       position:relative;overflow:hidden;
       background:var(--glass);border:1px solid var(--stroke);
       -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
       transition:transform .18s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;
     }
-    .btn svg{width:18px;height:18px;position:relative;z-index:2}
+    .btn svg{width:16px;height:16px;position:relative;z-index:2}
     .btn span,.btn{white-space:nowrap}
     .btn:active{transform:scale(.97)}
     .btn.primary{
       background:linear-gradient(135deg,rgba(30,127,224,.55),rgba(58,160,255,.35));
       border-color:rgba(90,180,255,.7);
-      box-shadow:0 10px 26px -10px rgba(58,160,255,.75);
+      box-shadow:0 8px 20px -8px rgba(58,160,255,.75);
     }
     .btn:hover{border-color:var(--stroke-hi)}
-    /* moving sheen line sweeping across – "crta" kao svjetlosni trag */
     .btn::before{
       content:'';position:absolute;top:-20%;left:-70%;width:45%;height:140%;z-index:1;
       background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);
@@ -143,35 +146,34 @@
     .btn.primary::before{animation-delay:.9s}
     @keyframes sheen{0%{left:-70%}55%,100%{left:150%}}
 
-    .media{display:flex;gap:11px}
+    .media{display:flex;gap:8px}
     .mtile{
-      flex:1;display:flex;align-items:center;gap:12px;padding:14px 15px;border-radius:16px;
+      flex:1;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;
       text-decoration:none;color:var(--text);
     }
-    .mtile .ic{width:40px;height:40px;border-radius:12px;flex:none;position:relative;z-index:1;
+    .mtile .ic{width:32px;height:32px;border-radius:9px;flex:none;position:relative;z-index:1;
       background:linear-gradient(135deg,var(--blue),var(--blue-bright));color:#fff;
-      display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px -6px rgba(58,160,255,.7)}
-    .mtile .ic svg{width:21px;height:21px}
-    .mtile .lbl{display:flex;flex-direction:column;line-height:1.15;position:relative;z-index:1}
-    .mtile .lbl b{font-family:var(--font-d);font-size:.9rem;font-weight:600;letter-spacing:.03em;text-shadow:0 1px 8px rgba(0,4,16,.65)}
-    .mtile .lbl small{font-size:.68rem;color:#b7c7dc;text-shadow:0 1px 6px rgba(0,4,16,.6)}
+      display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px -4px rgba(58,160,255,.7)}
+    .mtile .ic svg{width:16px;height:16px}
+    .mtile .lbl{display:flex;flex-direction:column;line-height:1.1;position:relative;z-index:1}
+    .mtile .lbl b{font-family:var(--font-d);font-size:.82rem;font-weight:600;letter-spacing:.02em;text-shadow:0 1px 8px rgba(0,4,16,.65)}
+    .mtile .lbl small{font-size:.62rem;color:#b7c7dc;text-shadow:0 1px 6px rgba(0,4,16,.6)}
 
     .footer{
-      text-align:center;padding:16px 18px 9px;font-size:.68rem;color:var(--muted);
+      text-align:center;padding:10px 14px 8px;font-size:.62rem;color:var(--muted);
       letter-spacing:.08em;border-top:1px solid rgba(150,190,240,.12);
     }
     .footer b{font-family:var(--font-d);color:var(--cyan);font-weight:600}
 
     .toast{
-      position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);
+      position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);
       background:rgba(10,20,40,.96);color:var(--text);border:1px solid var(--stroke-hi);
-      border-radius:12px;padding:11px 18px;font-size:.84rem;font-weight:500;z-index:20;
-      box-shadow:0 16px 34px -12px rgba(0,0,0,.7);opacity:0;pointer-events:none;
+      border-radius:10px;padding:9px 15px;font-size:.8rem;font-weight:500;z-index:20;
+      box-shadow:0 12px 28px -10px rgba(0,0,0,.7);opacity:0;pointer-events:none;
       transition:opacity .25s ease,transform .25s ease;
     }
     .toast.on{opacity:1;transform:translate(-50%,0)}
 
-    @media (max-width:360px){.name{font-size:1.7rem}.tile{min-height:98px}}
     @media (prefers-reduced-motion:reduce){
       *{animation:none!important;transition:none!important}
       .stagger{opacity:1;transform:none}.btn::before{display:none}
@@ -184,10 +186,10 @@
       <div class="crest">
         <span class="halo"></span>
         <span class="ring"></span>
-        <img src="lovro-horvat.jpg" alt="Lovro Horvat" width="132" height="132">
+        <img src="lovro-horvat.jpg" alt="Lovro Horvat" width="92" height="92">
       </div>
       <h1 class="name">Lovro Horvat</h1>
-      <p class="cred">mag. pol.</p>
+      <p class="cred">mag. polit.</p>
       <div class="divider"></div>
       <p class="role">Potpredsjednik Gradskog vijeća<br><span class="nowrap">Grada Čakovca</span></p>
     </header>
@@ -248,14 +250,14 @@
     }
     function shareCard(){
       const data={title:'Lovro Horvat – Digitalna vizitka',
-        text:'Lovro Horvat, mag. pol. · Potpredsjednik Gradskog vijeća Grada Čakovca',
+        text:'Lovro Horvat, mag. polit. · Potpredsjednik Gradskog vijeća Grada Čakovca',
         url:location.href};
       if(navigator.share){navigator.share(data).catch(()=>{});}
       else{navigator.clipboard.writeText(location.href).then(()=>toast('Link kopiran u međuspremnik'));}
     }
     function saveContact(){
       const vcard=['BEGIN:VCARD','VERSION:3.0','FN:Lovro Horvat','N:Horvat;Lovro;;;',
-        'TITLE:mag. pol.','ORG:Grad Čakovec','TEL;TYPE=CELL:+38598547778',
+        'TITLE:mag. polit.','ORG:Grad Čakovec','TEL;TYPE=CELL:+38598547778',
         'EMAIL:lovrohorvat451@gmail.com','URL:https://www.facebook.com/lovrohorvatofficial',
         'URL:https://www.linkedin.com/in/lovro-horvat-242b79160/',
         'NOTE:Potpredsjednik Gradskog vijeća Grada Čakovca','END:VCARD'].join('\n');
