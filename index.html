@@ -248,15 +248,24 @@
       else{navigator.clipboard.writeText(location.href).then(()=>toast('Link kopiran u međuspremnik'));}
     }
     function saveContact(){
-      const vcard=['BEGIN:VCARD','VERSION:3.0','FN:Lovro Horvat','N:Horvat;Lovro;;;',
-        'TITLE:mag. polit.','TEL;TYPE=CELL:+38598547778',
-        'EMAIL:lovrohorvat451@gmail.com','URL:https://www.facebook.com/lovrohorvatofficial',
-        'URL:https://www.linkedin.com/in/lovro-horvat-242b79160/',
-        'NOTE:Potpredsjednik Gradskog vijeća Grada Čakovca','END:VCARD'].join('\n');
-      const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard'}));
-      const a=document.createElement('a');a.href=url;a.download='Lovro_Horvat.vcf';a.click();
-      URL.revokeObjectURL(url);toast('Kontakt spremljen');
-    }
+  const vcard=[
+    'BEGIN:VCARD',
+    'VERSION:3.0',
+    'FN:Lovro Horvat',
+    'N:Horvat;Lovro;;;mag.pol.',
+    'TITLE:mag.pol.',
+    'ORG:mag.pol.',
+    'TEL;TYPE=CELL:+38598547778',
+    'EMAIL:lovrohorvat451@gmail.com',
+    'URL:https://www.facebook.com/lovrohorvatofficial',
+    'URL:https://www.linkedin.com/in/lovro-horvat-242b79160/',
+    'NOTE:Potpredsjednik Gradskog vijeća',
+    'END:VCARD'
+  ].join('\r\n');
+  const url=URL.createObjectURL(new Blob([vcard],{type:'text/vcard;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download='Lovro_Horvat.vcf';a.click();
+  URL.revokeObjectURL(url);toast('Kontakt spremljen');
+}
   </script>
 </body>
 </html>
